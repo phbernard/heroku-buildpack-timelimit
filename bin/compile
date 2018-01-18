@@ -4,15 +4,14 @@
 echo "-----> Installing timelimit-1.8.1 using build directory $1"
 
 BUILD_DIR=$1
-PACKAGE="TODO"
+PACKAGE="https://github.com/phbernard/heroku-buildpack-timelimit/raw/master/binaries/timelimit-1.8.1-linux-amd64.tar.gz"
 BINARY="timelimit-1.8.1/timelimit"
 LOCATION="$BUILD_DIR/vendor/timelimit"
 
-cd $BUILD_DIR
 mkdir -p $LOCATION/bin
-wget -O timelimit.tgz $PACKAGE
-tar xvf timelimit.tgz
-mv $BINARY $LOCATION/bin/timelimit
+wget -O $BUILD_DIR/timelimit.tar.gz $PACKAGE
+tar xvf $BUILD_DIR/timelimit.tar.gz -C $BUILD_DIR
+mv $BUILD_DIR/$BINARY $LOCATION/bin/timelimit
 
 echo "-----> Building runtime environment for timelimit to $LOCATION"
 
